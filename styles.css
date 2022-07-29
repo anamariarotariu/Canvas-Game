@@ -3,6 +3,7 @@
   --canvas-background-color: lightblue;
   --canvas-border-color: lightblue;
   --canvas-shadow-color: #6fb1e3;
+  --body-text-color: #fff;
 }
 * {
   margin: 0;
@@ -10,10 +11,14 @@
   box-sizing: border-box;
   background-color: var(--body-background-color);
 }
+body {
+  color: var(--body-text-color);
+}
 canvas {
   width: 500px;
   height: 500px;
   border: 1px solid var(--canvas-border-color);
   background-color: var(--canvas-background-color);
   box-shadow: 5px 5px 5px var(--canvas-shadow-color);
+  margin: 7% 33%;
 }

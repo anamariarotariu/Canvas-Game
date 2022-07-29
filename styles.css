@@ -22,6 +22,7 @@ canvas {
 }
 .timer {
   position: absolute;
-  top: 10%;
-  left: 50%;
+  top: 7%;
+  left: 45%;
+  font-size: 18px;
 }

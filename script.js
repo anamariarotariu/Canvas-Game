@@ -1,11 +1,14 @@
 var canvas = document.querySelector("canvas");
+/**
+ * function for displaying the timer on screen
+ */
 function showTimer() {
   let time = 0;
   let timerContainer = document.querySelector(".timer");
   window.addEventListener("load", (e) => {
     timerContainer.innerHTML = setInterval(() => {
       time += 0.01;
-      timerContainer.innerHTML = time.toFixed(3);
+      timerContainer.innerHTML = `Time elapsed: ${time.toFixed(3)}`;
     }, 10);
   });
 }
@@ -14,7 +17,7 @@ function showTimer() {
  * @returns coordinates for circle
  */
 function drawCircle() {
-  //showTimer();
+  showTimer();
   if (canvas.getContext) {
     var context = canvas.getContext("2d");
     var coordX = Math.floor(Math.random() * 400 + 32);
@@ -51,11 +54,7 @@ function checkClickOnCircle() {
       cursorYCoordinate - circleYCoordinate <= 60
     ) {
       console.log("User clicked EXACTLY on circle!");
-      console.log("Canvas = ", canvas);
-      // if we want to clear canvas and redraw circle
-      // canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-      drawCircle();
-      return true;
+      return 1;
     } else {
       //   console.log("X on click = ", cursorXCoordinate);
       //   console.log("Y on click = ", cursorYCoordinate);
@@ -63,8 +62,18 @@ function checkClickOnCircle() {
       //   console.log("X position = ", circleXCoordinate);
       //   console.log("Y position = ", circleYCoordinate);
       console.log("User clicked outside circle");
-      return false;
+      return 0;
     }
   });
 }
-checkClickOnCircle();
+function redrawCircle() {
+  console.log(checkClickOnCircle());
+  if (checkClickOnCircle() === 1) {
+    console.log("REDRAWING SHAPE");
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    drawCircle();
+  } else {
+    console.log("Try again");
+  }
+}
+redrawCircle();

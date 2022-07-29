@@ -1,0 +1,19 @@
+:root {
+  --body-background-color: steelblue;
+  --canvas-background-color: lightblue;
+  --canvas-border-color: lightblue;
+  --canvas-shadow-color: #6fb1e3;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--body-background-color);
+}
+canvas {
+  width: 500px;
+  height: 500px;
+  border: 1px solid var(--canvas-border-color);
+  background-color: var(--canvas-background-color);
+  box-shadow: 5px 5px 5px var(--canvas-shadow-color);
+}

@@ -1,5 +1,11 @@
 var canvas = document.querySelector("canvas");
 let timerContainer = document.querySelector(".timer--container");
+let secondsContainer = document.querySelector(".timer--container .seconds");
+let milisecondsContainer = document.querySelector(
+  ".timer--container .miliseconds"
+);
+let seconds = 00;
+let miliseconds = 00;
 let circleXCoordinate;
 let circleYCoordinate;
 
@@ -7,14 +13,33 @@ let circleYCoordinate;
  * function for displaying the timer on screen
  */
 function showTimer() {
-  let time = 0;
-
-  timerContainer.innerText = setInterval(() => {
-    time += 0.01;
-    timerContainer.innerText = `Time elapsed: ${time.toFixed(3)}`;
+  resetTimer();
+  var timer = setInterval(() => {
+    miliseconds++;
+    if (miliseconds <= 9) {
+      milisecondsContainer.innerHTML = "0" + miliseconds;
+    }
+    if (miliseconds > 9) {
+      milisecondsContainer.innerHTML = miliseconds;
+    }
+    if (miliseconds > 99) {
+      console.log("seconds");
+      seconds++;
+      secondsContainer.innerHTML = "0" + seconds;
+      miliseconds = 0;
+      milisecondsContainer.innerHTML = "0" + 0;
+    }
+    if (seconds > 9) {
+      secondsContainer.innerHTML = seconds;
+    }
   }, 10);
 }
-
+function resetTimer() {
+  miliseconds = 00;
+  seconds = 00;
+  secondsContainer.innerHTML = seconds;
+  milisecondsContainer.innerHTML = miliseconds;
+}
 /**
  * function for drawing circles of random colors on random positions
  * @returns coordinates for circle

@@ -20,10 +20,13 @@ canvas {
   box-shadow: 5px 5px 5px var(--canvas-shadow-color);
   margin: 7% 15%;
 }
-.timer--container {
+.timer__score--containers {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
   position: absolute;
   top: 7%;
-  left: 25%;
+  left: 15%;
   font-size: 18px;
 }
 .record--container {
@@ -32,4 +35,7 @@ canvas {
   position: absolute;
   top: 14%;
   left: 60%;
+}
+.score--container {
+  margin: 0 3em;
 }

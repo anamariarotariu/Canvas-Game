@@ -5,6 +5,9 @@ let milisecondsContainer = document.querySelector(
   ".timer--container .miliseconds"
 );
 const recordsContainer = document.querySelector(".record--container");
+const scoreContainer = document.querySelector(".score--container");
+scoreContainer.innerHTML = "Score: 0";
+let score = 0;
 let seconds = 00;
 let miliseconds = 00;
 let circleXCoordinate;
@@ -25,7 +28,6 @@ function showTimer() {
       milisecondsContainer.innerHTML = miliseconds;
     }
     if (miliseconds > 99) {
-      console.log("seconds");
       seconds++;
       secondsContainer.innerHTML = "0" + seconds;
       miliseconds = 0;
@@ -69,10 +71,17 @@ function drawCircle() {
     return [coordX, coordY];
   }
 }
+/** function for writing coordinates on screen when user clicks on circle */
+
 function writeCoordinates(xCoord, yCoord) {
   let record = document.createElement("div");
   record.innerHTML = `Circle coordinates: ${xCoord}, ${yCoord}`;
   recordsContainer.appendChild(record);
+}
+/** function for incrementing the score */
+function incrementScore() {
+  score++;
+  scoreContainer.innerText = `Score: ${score}`;
 }
 let coordinates = drawCircle();
 /** function for checking if an user clicks on a circle
@@ -94,6 +103,7 @@ function checkIfClickedOnCircle(
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     drawCircle();
     writeCoordinates(circleXCoord, circleYCoord);
+    incrementScore();
   } else {
     console.log("User clicked outside circle");
   }

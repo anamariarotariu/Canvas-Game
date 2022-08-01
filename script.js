@@ -4,6 +4,7 @@ let secondsContainer = document.querySelector(".timer--container .seconds");
 let milisecondsContainer = document.querySelector(
   ".timer--container .miliseconds"
 );
+const recordsContainer = document.querySelector(".record--container");
 let seconds = 00;
 let miliseconds = 00;
 let circleXCoordinate;
@@ -11,6 +12,7 @@ let circleYCoordinate;
 
 /**
  * function for displaying the timer on screen
+ * @returns no return type
  */
 function showTimer() {
   resetTimer();
@@ -34,6 +36,9 @@ function showTimer() {
     }
   }, 10);
 }
+/** function for reseting the timer
+ * @returns no return type
+ */
 function resetTimer() {
   miliseconds = 00;
   seconds = 00;
@@ -64,8 +69,16 @@ function drawCircle() {
     return [coordX, coordY];
   }
 }
+function writeCoordinates(xCoord, yCoord) {
+  let record = document.createElement("div");
+  record.innerHTML = `Circle coordinates: ${xCoord}, ${yCoord}`;
+  recordsContainer.appendChild(record);
+}
 let coordinates = drawCircle();
-function checkIfClicked(
+/** function for checking if an user clicks on a circle
+ * @returns no return type
+ */
+function checkIfClickedOnCircle(
   circleXCoord,
   circleYCoord,
   cursorXCoord,
@@ -80,17 +93,18 @@ function checkIfClicked(
     console.log("User clicked EXACTLY on circle!");
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     drawCircle();
+    writeCoordinates(circleXCoord, circleYCoord);
   } else {
     console.log("User clicked outside circle");
   }
 }
-
+/** added event listener on canvas  */
 canvas.addEventListener("click", (e) => {
   // we substract the value for canvas margin for each coordinate
 
   let cursorXCoordinate = e.clientX - 216;
   let cursorYCoordinate = e.clientY - 101;
-  checkIfClicked(
+  checkIfClickedOnCircle(
     circleXCoordinate,
     circleYCoordinate,
     cursorXCoordinate,

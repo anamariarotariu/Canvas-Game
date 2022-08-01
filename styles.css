@@ -18,11 +18,18 @@ canvas {
   border: 1px solid var(--canvas-border-color);
   background-color: var(--canvas-background-color);
   box-shadow: 5px 5px 5px var(--canvas-shadow-color);
-  margin: 7% 33%;
+  margin: 7% 15%;
 }
-.timer {
+.timer--container {
   position: absolute;
   top: 7%;
-  left: 45%;
+  left: 25%;
   font-size: 18px;
+}
+.record--container {
+  width: 30%;
+  height: 90%;
+  position: absolute;
+  top: 14%;
+  left: 60%;
 }
